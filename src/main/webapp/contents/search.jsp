@@ -314,7 +314,7 @@ if (currentPage > 1) { %>
             wantedAuthNo = resultSet.getString("wantedAuthNo");
             String sql_closeDt = resultSet.getString("closeDt");
             
-            /* String detailPageUrl = "http://localhost:8080/Takoyaki/contents/Detail.jsp?wantedAuthNo=" + sql_wantedAuthNo; */
+            
 
            
             out.print("<div><nav class=\"dblocMenu\">");
@@ -568,12 +568,12 @@ $(document).ready(function() {
     }
     
     .dbitem hr {
-        width: 80%; /* hr 요소의 너비를 조정합니다. */
-        margin: 10px auto; /* 화면 중앙에 위치하도록 설정합니다. */
+        width: 80%; 
+        margin: 10px auto; 
     }
     .dbitem_urltitle a {
         color: #F59A12;
-        text-decoration: none; /* 이 부분은 밑줄을 없애기 위한 스타일입니다. */
+        text-decoration: none;
     }
    
     .container { 
