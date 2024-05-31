@@ -16,11 +16,11 @@
 <%
 
 
-// 1. API 키를 저장합니다.
+
 Class.forName("com.mysql.cj.jdbc.Driver");
 String apiKey = "APIKEY";
 
-// 2. API 요청을 위한 URL을 생성합니다.
+
 String apiUrl = "http://openapi.work.go.kr/opi/opi/opia/wantedApi.do";
 String callTp = "L"; // 일반 채용정보 조회
 String returnType = "XML";
@@ -29,9 +29,9 @@ String pageNumberParam = request.getParameter("pageNumber");
 String displayParam = request.getParameter("display");
 
 
-//직업 카테고리 it로 한정
+
 String occupation = "132001|132002|132003|133100|133101|133102|133200|133201|133202|133203|133204|133205|133206|133207|133300|133301|133302|133900|134100|134101|134102|134103|134200|134301|134302|134303|134400|134900|135000|135001|214200|214201|214202|415500|415501|415502|415503|415504|415505";   
-//지역 선택 안되면 전체값받아옴
+
 
 String[] selectedRegions = request.getParameterValues("selectedRegions");
 String[] selectedEducations = request.getParameterValues("selectedEducations");
@@ -52,7 +52,7 @@ if (selectedEducations != null && selectedEducations.length > 0) {
 if (selectedCoTps != null && selectedCoTps.length > 0) {
     coTp = String.join("|", selectedCoTps);
 }
-int total = 0; // 기본적으로 총 건수를 0으로 초기화합니다.
+int total = 0; 
 int totalPages = 1; 
 int currentPage = 1; // 기본적으로 1페이지로 설정
 int startPage = 1;
@@ -80,7 +80,7 @@ try {
        String startPageString = String.valueOf(currentPage);
         String apiParameters = "authKey=" + apiKey + "&callTp=" + callTp + "&returnType=" + returnType + "&startPage=" + startPageString + "&display=" + display + "&occupation=" + occupation + "&region=" + region + "&education=" + education + "&coTp=" + coTp  ;
         String fullUrl = apiUrl + "?" + apiParameters;
-        // 3. HTTP 요청을 보내고 XML 데이터를 가져옵니다.
+        
         URL url = new URL(fullUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -90,7 +90,7 @@ try {
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(is);
 
-        // 4. XML 파싱 
+         
         NodeList wantedList = doc.getElementsByTagName("wanted");
         NodeList wantedRootList = doc.getElementsByTagName("wantedRoot");
 
