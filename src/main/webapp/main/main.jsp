@@ -46,7 +46,7 @@ class JobData {
 List<JobData> jobDataList = new ArrayList<>(); // jobDataList 선언
 
 String apiKey = "APIKEY"; // API 키
-String apiUrl = "http://openapi.work.go.kr/opi/opi/opia/wantedApi.do"; // API 엔드포인트 URL
+String apiUrl = "http://openapi.work.go.kr/opi/opi/opia/wantedApi.do"; // API URL
 String callTp = "L"; // 일반 채용정보 조회
 String returnType = "XML"; // 결과 형식
 String display = "30"; // 한 페이지당 표시할 항목 수
@@ -75,7 +75,7 @@ if (pageNumberParam != null && !pageNumberParam.isEmpty()) {
 String startPageString = String.valueOf(startPage);
 String occupation = "132001|132002|132003|133100|133101|133102|133200|133201|133202|133203|133204|133205|133206|133207|133300|133301|133302|133900|134100|134101|134102|134103|134200|134301|134302|134303|134400|134900|135000|135001|214200|214201|214202|415500|415501|415502|415503|415504|415505";
 
-// 나머지 변수 정의 및 URL 생성
+
 String apiParameters = "authKey=" + apiKey + "&callTp=" + callTp + "&returnType=" + returnType + "&startPage="
 		+ startPageString + "&display=" + display + "&occupation=" + occupation;
 
@@ -91,7 +91,7 @@ try {
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(is);
 
-	NodeList wantedList = doc.getElementsByTagName("wanted"); // "wanted" 태그의 목록 가져오기
+	NodeList wantedList = doc.getElementsByTagName("wanted"); 
 
 	// 데이터 추출 및 리스트에 저장
 	for (int i = 0; i < wantedList.getLength(); i++) {
@@ -107,14 +107,14 @@ try {
 			
 			wantedAuthNo = wantedElement.getElementsByTagName("wantedAuthNo").item(0).getTextContent();
 
-	        // Now you can use wantedAuthNo to construct detailPageUrl
+	        
 	        detailPageUrl = "http://localhost:8080/Takoyaki/contents/Detail.jsp?wantedAuthNo=" + wantedAuthNo;
 			
 			jobDataList.add(new JobData(title, company, closeDt, regDt, wantedInfoUrl, wantedAuthNo));
 		}
 	}
 
-	// 등록 날짜("regDt")를 기준으로 리스트를 내림차순으로 정렬
+	
 	jobDataList.sort((jd1, jd2) -> jd2.getRegDt().compareTo(jd1.getRegDt()));
 } catch (Exception e) {
 	e.printStackTrace();
@@ -238,7 +238,7 @@ try {
 	<div id="boxList">
 		<%
 		MainDB ext = new MainDB();
-		List<External> externalList = ext.recentExternal(); // recentContent() 메서드를 호출하여 데이터를 가져옴
+		List<External> externalList = ext.recentExternal(); 
 
 		for (External external : externalList) {
 		%>
